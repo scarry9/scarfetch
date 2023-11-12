@@ -3,8 +3,9 @@ import socket
 import psutil
 import colorama
 from colorama import Fore
-import distro  
+import distro
 from datetime import datetime
+import os  # Added import for os module
 
 colorama.init()
 
@@ -28,19 +29,21 @@ def get_system_info():
         distro_id = distro.id()
         distro_version = distro.version()
         distro_name = distro.name()
-        linux_distro = f"{distro_name}"
+        
+        # Get Desktop Environment information
+        desktop_environment = os.environ.get('XDG_CURRENT_DESKTOP', 'Unknown')
+        linux_distro = f"{distro_name} Linux {architecture}"
     else:
         linux_distro = "Unable to detect"
 
     return {
-        "Distro": f"{linux_distro} Linux {architecture}",
+        "Distro": linux_distro,                                               
+        "DE": desktop_environment,  # Separate key for Desktop Environment
         "Host": hostname,
         "System": system,
         "Kernel": release,
         "Uptime": f"{uptime_hours} hours, {uptime_minutes} minutes",
         "RAM": f"{total_memory} GB",
-        
-       
     }
 
 def print_system_info(info):
@@ -50,4 +53,3 @@ def print_system_info(info):
 if __name__ == "__main__":
     system_info = get_system_info()
     print_system_info(system_info)
-

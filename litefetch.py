@@ -33,11 +33,10 @@ def get_system_info():
         linux_distro = "Unable to detect"
 
     return {
-        "Distro": f"{linux_distro} Linux",
+        "Distro": f"{linux_distro} Linux {architecture}",
         "Host": hostname,
         "System": system,
         "Kernel": release,
-        "Architecture": architecture,
         "Uptime": f"{uptime_hours} hours, {uptime_minutes} minutes",
         "RAM": f"{total_memory} GB",
         

@@ -13,7 +13,7 @@ def get_system_info():
     hostname = socket.gethostname()
     cpu_cores = psutil.cpu_count(logical=False)
     total_memory = round(psutil.virtual_memory().total / (1024 ** 3), 2)  # Convert to GB
-    uptime = round(psutil.uptime() / 3600, 2)  # Convert to hours
+    uptime = round(psutil.boot_time() / 3600, 2)  # Convert to hours
 
     if system.lower() == 'linux':
         distro_info = platform.linux_distribution()

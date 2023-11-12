@@ -13,6 +13,13 @@ def get_system_info():
     hostname = socket.gethostname()
     cpu_cores = psutil.cpu_count(logical=False)
     total_memory = round(psutil.virtual_memory().total / (1024 ** 3), 2)  # Convert to GB
+    uptime = round(psutil.uptime() / 3600, 2)  # Convert to hours
+
+    if system.lower() == 'linux':
+        distro_info = platform.linux_distribution()
+        linux_distro = ' '.join(distro_info).strip()
+    else:
+        linux_distro = "Not applicable"
 
     return {
         "System": system,
@@ -21,11 +28,13 @@ def get_system_info():
         "Hostname": hostname,
         "CPU Cores": cpu_cores,
         "Total Memory": f"{total_memory} GB",
+        "Uptime": f"{uptime} hours",
+        "Linux Distro": linux_distro,
     }
 
 def print_system_info(info):
     for key, value in info.items():
-        print(Fore.BLUE + f"{key}: {value}")
+        print(Fore.GREEN + f"{key}: {value}")
 
     print("""
     _nnnn_        

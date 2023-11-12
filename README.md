@@ -1,4 +1,1 @@
-# litefetch
-Custom Neofetch Made In Python!
-
-Before running the litefetch.py install the dependencies in requirements.txt
+A fork of NoobCoder's litefetch which is a fork of gato's litefetch.

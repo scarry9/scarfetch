@@ -17,8 +17,8 @@ def get_system_info():
 
     # Get Linux distribution information
     if system.lower() == 'linux':
-        distro_info = platform.dist()
-        linux_distro = ' '.join(distro_info).strip()
+        distro_info = ' '.join(platform.uname()[-2:])
+        linux_distro = distro_info.strip()
     else:
         linux_distro = "Not applicable"
 

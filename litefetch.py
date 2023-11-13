@@ -2,10 +2,10 @@ import platform
 import socket
 import psutil
 import colorama
-from colorama import Fore
+from colorama import Fore, Style
 import distro
 from datetime import datetime
-import os  # Added import for os module
+import os
 
 colorama.init()
 
@@ -31,7 +31,7 @@ def get_system_info():
         distro_id = distro.id()
         distro_version = distro.version()
         distro_name = distro.name()
-        
+
         # Get Desktop Environment information
         desktop_environment = os.environ.get('XDG_CURRENT_DESKTOP', 'Unknown')
         linux_distro = f"{distro_name} Linux {architecture}"
@@ -46,13 +46,13 @@ def get_system_info():
         "Kernel": release,
         "Uptime": f"{uptime_hours} hours, {uptime_minutes} minutes",
         "RAM Usage": f"{used_memory}/{total_memory} GB",
-        
-        
     }
 
 def print_system_info(info):
     for key, value in info.items():
-        print(Fore.GREEN + f"{key}: {value}")
+        key_color = Fore.CYAN
+        value_color = Fore.WHITE
+        print(f"{Style.BRIGHT}{key_color}{key}: {Style.NORMAL}{value_color}{value}{Style.RESET_ALL}")
 
 if __name__ == "__main__":
     system_info = get_system_info()

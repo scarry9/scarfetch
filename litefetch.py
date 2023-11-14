@@ -39,14 +39,15 @@ def get_system_info():
         linux_distro = "Unable to detect"
 
     return {
-        "Distro": linux_distro,
-        "DE": desktop_environment,  # Separate key for Desktop Environment
-        "Host": hostname,
-        "System": system,
-        "Kernel": release,
-        "Uptime": f"{uptime_hours} hours, {uptime_minutes} minutes",
-        "RAM Usage": f"{used_memory}/{total_memory} GB",
+        " V         V | Distro": linux_distro,
+        "  V       V  | Host": hostname,
+        "   V     V   | DE": desktop_environment,  # Separate key for Desktop Environment
+        "    V   V    | Kernel": release,
+        "     V V     | Uptime": f"{uptime_hours} hours, {uptime_minutes} minutes",
+        "      V      | RAM Usage": f"{used_memory}/{total_memory} GB",
     }
+
+print("-----------------------------------------------")                                                      
 
 def print_system_info(info):
     for key, value in info.items():
@@ -57,3 +58,5 @@ def print_system_info(info):
 if __name__ == "__main__":
     system_info = get_system_info()
     print_system_info(system_info)
+
+print("-----------------------------------------------")

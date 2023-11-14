@@ -39,24 +39,22 @@ def get_system_info():
         linux_distro = "Unable to detect"
 
     return {
-        " V         V | Distro": linux_distro,
-        "  V       V  | Host": hostname,
-        "   V     V   | DE": desktop_environment,  # Separate key for Desktop Environment
-        "    V   V    | Kernel": release,
-        "     V V     | Uptime": f"{uptime_hours} hours, {uptime_minutes} minutes",
-        "      V      | RAM Usage": f"{used_memory}/{total_memory} GB",
+        f"{Style.NORMAL}{Fore.GREEN}  __     __  |{Style.BRIGHT} Distro{Style.NORMAL}{Fore.CYAN}": linux_distro,                                      
+        f"{Style.NORMAL}{Fore.GREEN}  \\ \\   / /  |{Style.BRIGHT} Host{Style.NORMAL}{Fore.CYAN}": hostname,                              
+        f"{Style.NORMAL}{Fore.GREEN}   \\ \\ / /   |{Style.BRIGHT} DE{Style.NORMAL}{Fore.CYAN}": desktop_environment,
+        f"{Style.NORMAL}{Fore.GREEN}    \\ v /    |{Style.BRIGHT} Kernel{Style.NORMAL}{Fore.CYAN}": release,
+        f"{Style.NORMAL}{Fore.GREEN}     \\_/     |{Style.BRIGHT} Uptime{Style.NORMAL}{Fore.CYAN}": f"{uptime_hours} hours, {uptime_minutes} minutes",
+        f"{Style.NORMAL}{Fore.GREEN}             |{Style.BRIGHT} RAM Usage{Style.NORMAL}{Fore.CYAN}": f"{used_memory}/{total_memory} GB",
+        f"{Style.NORMAL}{Fore.GREEN}             |{Style.BRIGHT} CPU Cores{Style.NORMAL}{Fore.CYAN}": f"{psutil.cpu_count(logical=False)}"
     }
-
-print("-----------------------------------------------")                                                      
+print(f"{Style.BRIGHT}{Fore.GREEN}-----------------------------------------------")
 
 def print_system_info(info):
     for key, value in info.items():
-        key_color = Fore.CYAN
-        value_color = Fore.WHITE
-        print(f"{Style.BRIGHT}{key_color}{key}: {Style.NORMAL}{value_color}{value}{Style.RESET_ALL}")
+        print(f"{key}: {value}")
 
 if __name__ == "__main__":
     system_info = get_system_info()
     print_system_info(system_info)
 
-print("-----------------------------------------------")
+print(f"{Style.BRIGHT}{Fore.GREEN}-----------------------------------------------")
